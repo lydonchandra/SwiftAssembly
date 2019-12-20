@@ -19,6 +19,8 @@
 		899895ACE7BB48BF224B8F28 /* Pods_BDDFrameworkTutorialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D762B75AC633DB3709357587 /* Pods_BDDFrameworkTutorialTests.framework */; };
 		D7156C9523AD38EA00D1CC55 /* TestC.c in Sources */ = {isa = PBXBuildFile; fileRef = D7156C9423AD38EA00D1CC55 /* TestC.c */; };
 		D7156C9723AD3E9100D1CC55 /* TestAsm.s in Sources */ = {isa = PBXBuildFile; fileRef = D7156C9623AD3E9100D1CC55 /* TestAsm.s */; };
+		D7156C9923AD530900D1CC55 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7156C9823AD530900D1CC55 /* VectorMath.swift */; };
+		D7156C9B23AD536100D1CC55 /* VectorMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7156C9A23AD536100D1CC55 /* VectorMathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		D7156C9323AD38EA00D1CC55 /* TestC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestC.h; sourceTree = "<group>"; };
 		D7156C9423AD38EA00D1CC55 /* TestC.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = TestC.c; sourceTree = "<group>"; };
 		D7156C9623AD3E9100D1CC55 /* TestAsm.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = TestAsm.s; sourceTree = "<group>"; };
+		D7156C9823AD530900D1CC55 /* VectorMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
+		D7156C9A23AD536100D1CC55 /* VectorMathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMathTests.swift; sourceTree = "<group>"; };
 		D762B75AC633DB3709357587 /* Pods_BDDFrameworkTutorialTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDDFrameworkTutorialTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F665302F328C3B45C1E372DA /* Pods-BDDFrameworkTutorialTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDDFrameworkTutorialTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BDDFrameworkTutorialTests/Pods-BDDFrameworkTutorialTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +106,7 @@
 				D7156C9423AD38EA00D1CC55 /* TestC.c */,
 				D7156C9223AD38E900D1CC55 /* BDDFrameworkTutorial-Bridging-Header.h */,
 				D7156C9623AD3E9100D1CC55 /* TestAsm.s */,
+				D7156C9823AD530900D1CC55 /* VectorMath.swift */,
 			);
 			path = BDDFrameworkTutorial;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 				22E4F2821FD21F690057B325 /* PlayerUpgraderSpec.swift */,
 				22E4F2991FD380B40057B325 /* PlayerUpgraderTests.swift */,
 				22196C541FCD17E0001F08A7 /* Info.plist */,
+				D7156C9A23AD536100D1CC55 /* VectorMathTests.swift */,
 			);
 			path = BDDFrameworkTutorialTests;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E4F29A1FD380B40057B325 /* PlayerUpgraderTests.swift in Sources */,
+				D7156C9B23AD536100D1CC55 /* VectorMathTests.swift in Sources */,
 				22E4F2831FD21F690057B325 /* PlayerUpgraderSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +344,7 @@
 				22196C411FCD0906001F08A7 /* AppDelegate.swift in Sources */,
 				22E4F2981FD328390057B325 /* Player.swift in Sources */,
 				22E4F2811FD21DD70057B325 /* PlayerUpgrader.swift in Sources */,
+				D7156C9923AD530900D1CC55 /* VectorMath.swift in Sources */,
 				D7156C9523AD38EA00D1CC55 /* TestC.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

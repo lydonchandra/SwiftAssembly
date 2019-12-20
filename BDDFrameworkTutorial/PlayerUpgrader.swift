@@ -49,9 +49,10 @@ class PlayerUpgrader {
   
   func testEq256() -> Bool {
     var lhs = UInt256()
-    var rhs = UInt256()
+    lhs.value = (5, 7, 11, 13)
     
-    //let lhsPtr = withUnsafeP
+    var rhs = UInt256()
+    rhs.value = (5, 7, 11, 13)
     
     let count = 1
     let stride = MemoryLayout<UInt256>.stride
