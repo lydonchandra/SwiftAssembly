@@ -48,6 +48,7 @@ class PlayerUpgraderSpec: QuickSpec {
         it("should be 42") {
           expect(upgrader.testC()).to(equal(42))
           expect(upgrader.testEq256()).to(equal(true))
+          expect(upgrader.testBgraToGrayscale()	).to(equal(true))
         }
       }
     }

@@ -202,7 +202,7 @@ public extension Vector2 {
     static func * (lhs: Vector2, rhs: Vector2) -> Vector2 {
         return Vector2(lhs.x * rhs.x, lhs.y * rhs.y)
     }
-
+  
     static func * (lhs: Vector2, rhs: Scalar) -> Vector2 {
         return Vector2(lhs.x * rhs, lhs.y * rhs)
     }

@@ -27,6 +27,8 @@
 /// THE SOFTWARE.
 
 import Foundation
+import UIKit
+
 class PlayerUpgrader {
   private let player: Player
   
@@ -63,5 +65,36 @@ class PlayerUpgrader {
     
     
     return eq256(&lhs, &rhs)
+  }
+  
+  
+  
+  func testBgraToGrayscale() -> Bool {
+    let img = UIImage(named: "mot1.jpg")
+    let imgCg = img!.cgImage!
+    
+    let imgProviderData = imgCg.dataProvider?.data
+    let imgData = CFDataGetBytePtr(imgProviderData)
+    
+    let imgWidth = uint( imgCg.width )
+    let imgHeight = uint( imgCg.height )
+    let size :uint = imgWidth * imgHeight * 4
+    
+    var outGrayPtr = [CUnsignedChar](repeating: 0, count: Int(size))
+    bgraToGrayscale(&outGrayPtr, imgData, imgWidth, imgHeight)
+    
+    let cgContext = CGContext(data: &outGrayPtr,
+                              width: imgCg.width, height: imgCg.height,
+                              bitsPerComponent: imgCg.bitsPerComponent,
+                              bytesPerRow: imgCg.bytesPerRow,
+                              space: imgCg.colorSpace!,
+                              bitmapInfo: imgCg.bitmapInfo.rawValue)
+    
+    let outGrayCgImage = cgContext!.makeImage()!
+    
+    let outGrayUIImage = UIImage(cgImage: outGrayCgImage)
+    print(outGrayCgImage.width)
+    
+    return true
   }
 }
