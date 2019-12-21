@@ -12,7 +12,7 @@ typedef struct {
 
 bool eq256( const UInt256 *lhs, const UInt256 *rhs );
 
-void bgraToGrayscale( unsigned char * __restrict dest, const unsigned char* src, uint width, uint height );
-void bgraToGrayscaleNeon (unsigned char * __restrict dest, unsigned char * __restrict src, uint numPixels);
+void bgraToGrayscale( unsigned char * __restrict dest, const unsigned char* src, int width, int height );
+void bgraToGrayscaleNeon (unsigned char * __restrict dest, unsigned char * __restrict src, int numPixels);
 
 #endif /* TestC_h */

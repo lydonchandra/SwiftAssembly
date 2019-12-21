@@ -67,33 +67,40 @@ class PlayerUpgrader {
     return eq256(&lhs, &rhs)
   }
   
-  
+    func BGRAToGrayscale(srcImg: CGImage) -> CGImage {
+        let BytesPerPixel = 4
+        
+        guard let srcProv = srcImg.dataProvider else { fatalError("dataProvider is nil") }
+        guard let srcProvData = srcProv.data else { fatalError("dataProvider.data is nil") }
+        
+        let srcPtr = CFDataGetBytePtr(srcProvData)
+        let srcSize = srcImg.width * srcImg.height * BytesPerPixel
+        
+        var destPtr = [CUnsignedChar](repeating: 0, count: srcSize)
+        bgraToGrayscale(&destPtr, srcPtr, Int32(srcImg.width), Int32(srcImg.height))
+        
+        let destCgContext = CGContext(data: &destPtr,
+                                      width: srcImg.width, height: srcImg.height,
+                                      bitsPerComponent: srcImg.bitsPerComponent,
+                                      bytesPerRow: srcImg.bytesPerRow,
+                                      space: srcImg.colorSpace!,
+                                      bitmapInfo: srcImg.bitmapInfo.rawValue)
+        
+        guard let destImg = destCgContext?.makeImage() else {
+          fatalError("Destination Image is nil")
+        }
+        
+        return destImg
+    }
   
   func testBgraToGrayscale() -> Bool {
     let img = UIImage(named: "mot1.jpg")
     let imgCg = img!.cgImage!
     
-    let imgProviderData = imgCg.dataProvider?.data
-    let imgData = CFDataGetBytePtr(imgProviderData)
-    
-    let imgWidth = uint( imgCg.width )
-    let imgHeight = uint( imgCg.height )
-    let size :uint = imgWidth * imgHeight * 4
-    
-    var outGrayPtr = [CUnsignedChar](repeating: 0, count: Int(size))
-    bgraToGrayscale(&outGrayPtr, imgData, imgWidth, imgHeight)
-    
-    let cgContext = CGContext(data: &outGrayPtr,
-                              width: imgCg.width, height: imgCg.height,
-                              bitsPerComponent: imgCg.bitsPerComponent,
-                              bytesPerRow: imgCg.bytesPerRow,
-                              space: imgCg.colorSpace!,
-                              bitmapInfo: imgCg.bitmapInfo.rawValue)
-    
-    let outGrayCgImage = cgContext!.makeImage()!
-    
-    let outGrayUIImage = UIImage(cgImage: outGrayCgImage)
-    print(outGrayCgImage.width)
+    let outGrayCgImg = BGRAToGrayscale(srcImg: imgCg)
+
+    let outGrayUIImg = UIImage(cgImage: outGrayCgImg)
+    print(outGrayCgImg.width)
     
     return true
   }

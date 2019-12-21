@@ -6,26 +6,26 @@ int getInput(void) {
   return 42;
 }
 
-void bgraToGrayscale( unsigned char * __restrict dest, const unsigned char* src, uint width, uint height ) {
-  uint BYTES_PER_PIXEL = 4;
-  uint numPixels = width * height;
-  
-  for( uint idx=0; idx < numPixels; idx++ ) {
+    void bgraToGrayscale( unsigned char * __restrict dest, const unsigned char* src, int width, int height ) {
+      int BYTES_PER_PIXEL = 4;
+      int numPixels = width * height;
       
-    float weight = ((float)src[0]) * 0.11 +
-                  ((float)src[1]) * 0.59 +
-                  ((float)src[2]) * 0.3;
-    
-    dest[0] = (int)weight;
-    dest[1] = (int)weight;
-    dest[2] = (int)weight;
-    dest[3] = src[3];
-    dest += BYTES_PER_PIXEL;
-    src += BYTES_PER_PIXEL;
-  }
-}
+      for( int idx=0; idx < numPixels; idx++ ) {
+          
+        float weight = ((float)src[0]) * 0.11 +
+                      ((float)src[1]) * 0.59 +
+                      ((float)src[2]) * 0.3;
+        
+        dest[0] = (int)weight;
+        dest[1] = (int)weight;
+        dest[2] = (int)weight;
+        dest[3] = src[3];
+        dest += BYTES_PER_PIXEL;
+        src += BYTES_PER_PIXEL;
+      }
+    }
 
-void bgraToGrayscaleNeon (unsigned char * __restrict dest, unsigned char * __restrict src, uint numPixels)
+void bgraToGrayscaleNeon (unsigned char * __restrict dest, const unsigned char * __restrict src, int numPixels)
 {
     int i;
       uint8x8_t rfac = vdup_n_u8 (77);
