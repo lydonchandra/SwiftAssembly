@@ -33,6 +33,14 @@ import Nimble
 
 class PlayerUpgraderSpec: QuickSpec {
   
+//  func testBla() {
+//    var player = Player()
+//    var upgrader = PlayerUpgrader(player: player)
+//    self.measure {
+//      upgrader.testBgraToGrayscale()
+//    }
+//  }
+  
   override func spec() {
     
     var player: Player!
@@ -46,8 +54,9 @@ class PlayerUpgraderSpec: QuickSpec {
       
       context("testC") {
         it("should be 42") {
-          expect(upgrader.testC()).to(equal(42))
-          expect(upgrader.testEq256()).to(equal(true))
+          
+//          expect(upgrader.testC()).to(equal(42))
+//          expect(upgrader.testEq256()).to(equal(true))
           expect(upgrader.testBgraToGrayscale()	).to(equal(true))
         }
       }

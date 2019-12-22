@@ -7,15 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "492F493F-6DF9-4605-AE84-31BCABCAE54B"
-            shouldBeEnabled = "No"
+            uuid = "D3F73D84-510B-456F-B811-1D5525C89228"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BDDFrameworkTutorial/PlayerUpgrader.swift"
+            filePath = "BDDFrameworkTutorial/TestC.c"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122">
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "bgraToGrayscale(dest, src, width, height)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -63,42 +63,74 @@ class PlayerUpgrader {
     //let lhsPtr = UnsafeMutableRawPointer.allocate(byteCount: byteCount, alignment: alignment)
     //let lhsPtr = UnsafePointer.i
     
-    
     return eq256(&lhs, &rhs)
   }
   
-    func BGRAToGrayscale(srcImg: CGImage) -> CGImage {
-        let BytesPerPixel = 4
-        
-        guard let srcProv = srcImg.dataProvider else { fatalError("dataProvider is nil") }
-        guard let srcProvData = srcProv.data else { fatalError("dataProvider.data is nil") }
-        
-        let srcPtr = CFDataGetBytePtr(srcProvData)
-        let srcSize = srcImg.width * srcImg.height * BytesPerPixel
-        
-        var destPtr = [CUnsignedChar](repeating: 0, count: srcSize)
-        bgraToGrayscale(&destPtr, srcPtr, Int32(srcImg.width), Int32(srcImg.height))
-        
-        let destCgContext = CGContext(data: &destPtr,
-                                      width: srcImg.width, height: srcImg.height,
-                                      bitsPerComponent: srcImg.bitsPerComponent,
-                                      bytesPerRow: srcImg.bytesPerRow,
-                                      space: srcImg.colorSpace!,
-                                      bitmapInfo: srcImg.bitmapInfo.rawValue)
-        
-        guard let destImg = destCgContext?.makeImage() else {
-          fatalError("Destination Image is nil")
-        }
-        
-        return destImg
-    }
+//  func BGRAToGrayscale(srcImg: CGImage) -> CGImage {
+//      let BytesPerPixel = 4
+//
+//      guard let srcProv = srcImg.dataProvider else { fatalError("dataProvider is nil") }
+//      guard let srcProvData = srcProv.data else { fatalError("dataProvider.data is nil") }
+//
+//      let srcPtr = CFDataGetBytePtr(srcProvData)
+//      let srcSize = srcImg.width * srcImg.height * BytesPerPixel
+//
+//      var destPtr = [CUnsignedChar](repeating: 0, count: srcImg.width * srcImg.height * 1)
+//      bgraToGrayscale2(&destPtr, srcPtr, Int32(srcImg.width), Int32(srcImg.height))
+//
+//      //let colorSpace = CGColorSpaceCreateWithName("kCGColorSpaceGenericGrayGamma2_2" as CFString)
+//
+//      let colorSpace = CGColorSpaceCreateDeviceGray()
+//
+//      let destCgContext = CGContext(data: &destPtr,
+//                                    width: srcImg.width, height: srcImg.height,
+//                                    bitsPerComponent: 8,
+//                                    bytesPerRow: 0,
+//                                    //bitsPerPixel: 8,
+//                                    space: colorSpace,
+//                                    bitmapInfo:  CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue).rawValue)
+//
+////    let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue).rawValue)
+//
+//      guard let destImg = destCgContext?.makeImage() else {
+//        fatalError("Destination Image is nil")
+//      }
+//
+//      return destImg
+//  }
+  
+  func BGRAToGrayscale(srcImg: CGImage) -> CGImage {
+      let BytesPerPixel = 4
+      
+      guard let srcProv = srcImg.dataProvider else { fatalError("dataProvider is nil") }
+      guard let srcProvData = srcProv.data else { fatalError("dataProvider.data is nil") }
+      
+      let srcPtr = CFDataGetBytePtr(srcProvData)
+      let srcSize = srcImg.width * srcImg.height * BytesPerPixel
+      
+      var destPtr = [CUnsignedChar](repeating: 0, count: srcSize)
+      bgraToGrayscaleNeon(&destPtr, srcPtr, Int32(srcImg.width), Int32(srcImg.height))
+
+      let destCgContext = CGContext(data: &destPtr,
+                                    width: srcImg.width, height: srcImg.height,
+                                    bitsPerComponent: srcImg.bitsPerComponent,
+                                    bytesPerRow: srcImg.bytesPerRow,
+                                    space: srcImg.colorSpace!,
+                                    bitmapInfo: srcImg.bitmapInfo.rawValue)
+      
+      guard let destImg = destCgContext?.makeImage() else {
+        fatalError("Destination Image is nil")
+      }
+      
+      return destImg
+  }
+  
   
   func testBgraToGrayscale() -> Bool {
     let img = UIImage(named: "mot1.jpg")
     let imgCg = img!.cgImage!
     
     let outGrayCgImg = BGRAToGrayscale(srcImg: imgCg)
-
     let outGrayUIImg = UIImage(cgImage: outGrayCgImg)
     print(outGrayCgImg.width)
     
